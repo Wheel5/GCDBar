@@ -9,13 +9,22 @@ local defaults = {
 	["scale"] = 1,
 	["color"] = {1, 0, 0, .7},
 	["abCooldown"] = false,
+	["fastGCD"] = false,
 }
 
 gb.name = "GCDBar"
-gb.version = "1.0"
+gb.version = "1.1"
 
 local function cdHandler()
 	local remain, duration, global, globalSlotType = GetSlotCooldownInfo(3)
+	if gb.savedVars.fastGCD then
+		remain = remain - 100
+		if remain < 0 then
+			EM:UnregisterForUpdate(gb.name.."cooldown")
+			gb.UI.gbFront:SetHidden(true)
+			return
+		end
+	end
 	gb.UI.gbFront:SetDimensions((remain/duration)*175, 50)
 end
 

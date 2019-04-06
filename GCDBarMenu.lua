@@ -68,6 +68,13 @@ function gb.buildMenu()
 				gb.UI.setProperties()
 			end,
 		},
+		{
+			type = "checkbox",
+			name = "Fast GCD",
+			tooltip = "Simulates a 900ms GCD to help with queuing skills at the correct time (slighly visually buggy but it works)",
+			getFunc = function() return gb.savedVars.fastGCD end,
+			setFunc = function(value) gb.savedVars.fastGCD = value end,
+		},
 	}
 
 	LAM:RegisterOptionControls(gb.name.."Options", options)
