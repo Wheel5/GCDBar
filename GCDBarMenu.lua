@@ -25,7 +25,7 @@ function gb.buildMenu()
 		{
 			type = "checkbox",
 			name = "Lock UI",
-			tooltip = "Enable repositioning the cooldown bar",
+			tooltip = "Enable repositioning and resizing of the cooldown bar",
 			getFunc = function() return lockUI end,
 			setFunc = function(value)
 				gb.UI.setHudToggle(value)
@@ -46,15 +46,12 @@ function gb.buildMenu()
 			end,
 		},
 		{
-			type = "slider",
-			name = "Bar Scale",
-			tooltip = "Adjust size of GCD Bar frame",
-			min = 0.5,
-			max = 2,
-			step = 0.1,
-			getFunc = function() return gb.savedVars.scale end,
+			type = "checkbox",
+			name = "Reverse Bar Direction",
+			tooltip = "Reverses the direction that the bar counts down in",
+			getFunc = function() return gb.savedVars.reverse end,
 			setFunc = function(value)
-				gb.savedVars.scale = value
+				gb.savedVars.reverse = value
 				gb.UI.setProperties()
 			end,
 		},
@@ -74,6 +71,16 @@ function gb.buildMenu()
 			tooltip = "Simulates a 900ms GCD to help with queuing skills at the correct time (slighly visually buggy but it works)",
 			getFunc = function() return gb.savedVars.fastGCD end,
 			setFunc = function(value) gb.savedVars.fastGCD = value end,
+		},
+		{
+			type = "slider",
+			name = "Advanced Fast GCD",
+			tooltip = "The number selected here will determine how early the GCD timer ends. If 150 is selected, the timer will end 150 ms early, simulating a 850 ms GCD.",
+			min = 0,
+			max = 200,
+			step = 1,
+			getFunc = function() return gb.savedVars.advTime end,
+			setFunc = function(value) gb.savedVars.advTime = value end,
 		},
 	}
 
